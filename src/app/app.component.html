@@ -20,11 +20,22 @@
   <div>
     <h2>Posts</h2>
  <!-- Mostrar posts-->
- <ng-container *ngIf="publicacion">
-  <h2>Usuario encontrado</h2>
+ <ng-container *ngFor="let publicacion of publicaciones">
 
-  <p>Nombre: {{ publicacion.title }}</p>
+  <h3>Titulo: {{ publicacion.title }}</h3>
   <p>Contenido: {{ publicacion.body }}</p>
+  <h4>Reacciones: </h4> 
+  <span>Likes: {{  publicacion.reactions.likes }}  </span> 
+  <span>Dislikes: {{ publicacion.reactions.dislikes }}  </span>
+
+
+<!--
+  <ng-container *ngFor="let comment of publicacion.comments">
+    <h3>Usuario: {{ comment.username }}</h3>
+    <p>Comentario: {{ comment.body }}</p>
+  </ng-container>
+  
+-->
 
   
 </ng-container>

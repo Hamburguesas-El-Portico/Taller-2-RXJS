@@ -17,7 +17,7 @@ export class AppComponent {
 
   txtUser: string = "";  // Variable para el username ingresado
 
-  publicacion: Post | null = null; 
+  publicaciones: [Post] | null = null; 
 
   userData: User | null = null; // Para almacenar la información del usuario
 
@@ -25,6 +25,10 @@ export class AppComponent {
 
   // Función para buscar usuario por su username
   searchUser() {
+    if (!this.txtUser.trim()) {
+      alert("Por favor ingresa un username.");
+      return;
+    }
     /*
       this.http.get(`${this.ROOT_URL}/users/filter?key=username&value=${this.txtUser}`)
         .subscribe({
@@ -54,15 +58,16 @@ export class AppComponent {
 
     getPost(id: Number){
       this.http.get(`${this.ROOT_URL}/posts/${id}`).subscribe((postInfo: any) =>{
-        this.publicacion=postInfo[0];
+        this.publicaciones=postInfo.posts;
       })
     }
 
     getUserAndPost(){
+
       this.http.get<User>(this.ROOT_URL + '/users/filter?key=username&value=' + this.txtUser).pipe(
         mergeMap((userInfo: any) => {
-          if (userInfo.length == 1) {
-            this.userData = userInfo[0];  // Asignar el primer usuario
+          if (userInfo.users.length == 1) {
+            this.userData = userInfo.users[0];  // Asignar el primer usuario
             return this.http.get<Post>(this.ROOT_URL + '/posts/user/' + this.userData!.id);
           } else {
             this.userData = null;  // Si no se encuentra, vaciar userData
@@ -70,7 +75,7 @@ export class AppComponent {
           }
         })
       ).subscribe((postInfo: any) => {
-        this.publicacion = postInfo[0]; 
+        this.publicaciones = postInfo.posts; 
       })
     }
   }
