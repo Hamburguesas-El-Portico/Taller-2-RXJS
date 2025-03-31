@@ -17,7 +17,7 @@ export class AppComponent {
 
   txtUser: string = "";  // Variable para el username ingresado
 
-  publicaciones: [Post] | null = null; 
+  publicaciones: [Post] | null = null;
 
   userData: User | null = null; // Para almacenar la información del usuario
 
@@ -39,7 +39,7 @@ export class AppComponent {
             } else {
               this.userData = null;  // Si no se encuentra, vaciar userData
             }
-          } 
+          }
         }); */
 
         this.getUserAndPost();
@@ -49,7 +49,7 @@ export class AppComponent {
       this.http.get(this.ROOT_URL + '/user/1').subscribe((userInfo: any) =>{
         this.userData = userInfo
       }
-      ) 
+      )
       //this.getPost(this.userData!.id)
 
     }
@@ -75,8 +75,10 @@ export class AppComponent {
           }
         })
       ).subscribe((postInfo: any) => {
-        this.publicaciones = postInfo.posts; 
+        this.publicaciones = postInfo.posts;
       })
     }
   }
+
+
 
