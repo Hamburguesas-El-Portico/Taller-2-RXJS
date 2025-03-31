@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../interfaces/user';
 import { Post } from '../interfaces/post';
-import { Comment } from '../interfaces/comment';
+import { PostComment } from '../interfaces/comment';
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +30,8 @@ export class ApiService {
   }
 
   // Obtener los comentarios de un post por ID
-  getCommentsByPostId(postId: number): Observable<Comment[]> {
-    return this.http.get<Comment[]>(`${this.baseUrl}comments/post/${postId}`);
+  getCommentsByPostId(postId: number): Observable<PostComment[]> {
+    return this.http.get<PostComment[]>(`${this.baseUrl}comments/post/${postId}`);
   }
 
   // Obtener un post por ID
