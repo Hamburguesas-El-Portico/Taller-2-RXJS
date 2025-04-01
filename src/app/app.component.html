@@ -10,57 +10,15 @@
   </form>
 
   <!-- Mostrar datos del usuario -->
-  <ng-container *ngIf="userData">
-    <h2 class="mt-4">Usuario encontrado</h2>
-    <div class="card">
-      <div class="card-body">
-        <p>Username: {{ userData.username }}</p>
-        <p>Nombre: {{ userData.firstName }}</p>
-        <p>Apellido: {{ userData.lastName }}</p>
-        <p>Correo: {{ userData.email }}</p>
-        <p>Teléfono: {{ userData.phone }}</p>
-      </div>
-    </div>
-
-  </ng-container>
+  <user-data *ngIf="userData" [user]="userData"></user-data>
 
   <div class="mt-4">
-
     <!-- Mostrar posts-->
-    
-    <ng-container *ngFor="let publicacion of publicaciones" class="card mb-3">
-      <hr class="my-4">
-      <h2>Post</h2>
-      <div class="card-body">
-        <h3 class="card-title">Titulo: {{ publicacion.title }}</h3>
-        <p ass="card-text">Contenido: {{ publicacion.body }}</p>
-        <h4 class="card-subtitle mb-2 text-muted">Reacciones: </h4>
-        <span>👍: {{  publicacion.reactions.likes }}  </span>
-        <span>👎: {{ publicacion.reactions.dislikes }}  </span>
-      </div>
-
-
-        <h2>Comentarios</h2>
-      <ng-container *ngFor="let comment of publicacion.comments">
-        <div class="card mt-2">
-          <div class="card-body">
-            <h3 class="card-title">Usuario: {{ comment.user.username }}</h3>
-            <p class="card-text">Comentario: {{ comment.body }}</p>
-          </div>
-        </div>
-      
-    </ng-container>
-
-
-    </ng-container>
-
+    <app-post *ngFor="let publicacion of publicaciones" [post]="publicacion"></app-post>
   </div>
 
-
-
-</div>
-
- <!-- Mostrar mensaje si el usuario no existe -->
- <div *ngIf="userData === null" class="alert alert-danger mt-3">
-  Usuario no encontrado.
+  <!-- Mostrar mensaje si el usuario no existe -->
+  <div *ngIf="userData === null" class="alert alert-danger mt-3">
+    Usuario no encontrado.
+  </div>
 </div>
