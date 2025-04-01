@@ -27,8 +27,10 @@
   <div class="mt-4">
 
     <!-- Mostrar posts-->
+    
     <ng-container *ngFor="let publicacion of publicaciones" class="card mb-3">
-      <h2>Posts</h2>
+      <hr class="my-4">
+      <h2>Post</h2>
       <div class="card-body">
         <h3 class="card-title">Titulo: {{ publicacion.title }}</h3>
         <p ass="card-text">Contenido: {{ publicacion.body }}</p>
@@ -38,10 +40,15 @@
       </div>
 
 
-
-    <ng-container *ngFor="let comment of publicacion.comments">
-      <h3>Usuario: {{ comment.user.username }}</h3>
-      <p>Comentario: {{ comment.body }}</p>
+        <h2>Comentarios</h2>
+      <ng-container *ngFor="let comment of publicacion.comments">
+        <div class="card mt-2">
+          <div class="card-body">
+            <h3 class="card-title">Usuario: {{ comment.user.username }}</h3>
+            <p class="card-text">Comentario: {{ comment.body }}</p>
+          </div>
+        </div>
+      
     </ng-container>
 
 
