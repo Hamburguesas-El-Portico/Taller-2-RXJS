@@ -1,9 +1,10 @@
-<h1>Buscar usuario</h1>
+
 
 <div class="container">
+  <h1>Buscar usuario</h1>
   <form #form="ngForm" (ngSubmit)="searchUser()">
     <div class="form-group">
-      <label for="username">Con username</label>
+      <label for="username">Ingresa username del usuario a buscar:</label>
       <input type="text" [(ngModel)]="txtUser" name="username" class="form-control" placeholder="Ingresa el nombre de usuario">
     </div>
     <button type="submit" class="btn btn-primary mt-2">Buscar usuario</button>
